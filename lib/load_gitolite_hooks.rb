@@ -100,3 +100,18 @@ end
 #     executable  false
 #   end
 # end
+
+RedmineGitHosting::GitoliteHooks.register_hooks do
+  # Set source dir
+  source_dir    Rails.root.join('plugins', 'redmine_git_hosting', 'contrib', 'hooks').to_s
+
+  # Declare GitoliteHooks to install
+
+  # Install executable
+  gitolite_hook do
+    name        'sphinx_documentation.sh'
+    source      'post-receive/sphinx_documentation.sh'
+    destination 'post-receive.d/sphinx_documentation'
+    executable   true
+  end
+end
